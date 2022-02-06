@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <!-- <link rel="stylesheet" href="./style.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+      integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
+      crossorigin="anonymous"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100%;
+        height: 100vh;
+        font-family: monospace;
+        display: grid;
+        place-items: center;
+      }
+      .headline {
+        background-color: #a9cce3;
+        font-size: bold;
+        text-align: center;
+        padding: 3px 0px;
+      }
+      .box {
+        width: 300px;
+        height: 400px;
+        background-color: #a9cce3;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
+      }
+      .fa-sun {
+        color: #49462d;
+        margin-top: 30px;
+        transition: 0.3s ease-in;
+        cursor: pointer;
+        animation: spin 1s linear infinite,3s linear infinite;
+      }
+      @-webkit-keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      .fa-sun:hover {
+        padding-bottom: -4px;
+      }
+      .info {
+        margin-top: 180px;
+        background-color: honeydew;
+      }
+      .info .location {
+        font-size: 35px;
+        padding-bottom: 4px;
+      }
+      .info #date {
+        font-size: 15px;
+        font-weight: bolder;
+        padding: 2px 0px;
+        background-color: #c4d4df;
+      }
+      .tempminmax {
+        font-size: 20px;
+      }
+      .info h2,
+      h1,
+      h3,
+      p {
+        padding: 4px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <h1 class="headline">Weather App</h1> -->
+    <div class="box">
+      <div class="weathercon"><i class="fas fa-sun fa-3x"></i></div>
+      <div class="info">
+        <h2 class="location">{%Location%},{%country%}</h2>
+        <p id="date"></p>
+        <h1 class="temp">{%tempval%}</h1>
+        <h3 class="tempminmax">Min {%tempmin%} | Max {%tempmax%}</h3>
+      </div>
+    </div>
+    <script>
+      const weathercon = document.querySelector(".weathercon")
+      const date = document.querySelector("#date");
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+      const Currentday = () => {
+          let CurrentTime = new Date();
+          let hours = CurrentTime.getHours();
+          var session = "AM";
+          if (hours == 0) {
+              hours() = 12;
+          }
+          if (hours > 12) {
+              hours = hours - 12;
+              session = "PM";
+          }
+          date.innerHTML = `${days[CurrentTime.getDay()]} | ${month[CurrentTime.getMonth()]} ${CurrentTime.getUTCDate()} | ${hours}:${CurrentTime.getMinutes()} ${session} `
+      }
+      Currentday()
+    </script>
+  </body>
+</html>
